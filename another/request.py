@@ -10,8 +10,9 @@ class Request():
     
     def __init__(self, scope, message) -> None:
         self.query = Request.parse_query(scope['query_string'].decode())
-        body = json.loads(message['body'])
-        self.body = body
+        if message.get('body') != b'':
+            body = json.loads(message.get('body').decode())
+            self.body = body
         self.path = scope['path']
         self.method = scope['method']
     

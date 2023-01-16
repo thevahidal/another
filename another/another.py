@@ -57,6 +57,8 @@ class Another():
                 response = middleware(None, response)
             
             await self.handle_response(send=send, response=response)
+        except KeyError:
+            await self.handle_response(send=send, response=Response(status=Status.HTTP_400_BAD_REQUEST))
             
         except Exception as e:
             print("error", e)
@@ -145,6 +147,6 @@ class Another():
         })
         await send({
             'type': 'http.response.body',
-            'body': json.dumps(response.data).encode(),
+            'body': json.dumps(response.data or {}).encode(),
         })
     
