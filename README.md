@@ -27,7 +27,7 @@ app = Another()
 
 @app.get("/hello")
 def hellow_another(req: Request):
-	return Response({
+    return Response({
         "message": "Hello!",
         "extra": req.query
     }, status=Status.HTTP_200_OK)
