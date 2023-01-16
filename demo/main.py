@@ -19,3 +19,11 @@ def get_route(req: Request):
 @app.post("/route")
 def post_route(req: Request):
 	return Response({**req.body, **req.query}, status=Status.HTTP_200_OK)
+
+
+@app.get("/hello")
+def hellow_another(req: Request):
+	return Response({
+        "message": "Hello!",
+        "extra": req.query
+    }, status=Status.HTTP_200_OK)
