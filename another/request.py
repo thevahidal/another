@@ -18,6 +18,9 @@ class Request():
     
     @staticmethod
     def parse_query(raw_query: str):
+        if raw_query == '':
+            return {}
+        
         queries = raw_query.split("&")
         parsed = {}
 
